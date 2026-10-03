@@ -297,6 +297,7 @@ class SoulXSingerSVC(nn.Module):
     
         return generated_audio, pitch_shift
 
+    @torch.inference_mode()
     def infer_segment(self, pt_mel, pt_wav, gt_wav, pt_f0, gt_f0, pitch_shift=0, n_steps=32, cfg=3):
         len_prompt_mel = pt_mel.shape[1]
         pt_f0 = F.pad(pt_f0, (0, 0, 0, max(0, len_prompt_mel - pt_f0.shape[1])))[:, :len_prompt_mel]

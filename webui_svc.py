@@ -245,7 +245,7 @@ class AppState:
 APP_STATE = AppState()
 
 
-@spaces.GPU
+@spaces.GPU(duration=180)
 def _run_svc_preprocess(
     prompt_audio,
     target_audio,

@@ -221,7 +221,7 @@ def _run_transcription_internal(
     return p, t
 
 
-@spaces.GPU
+@spaces.GPU(duration=180)
 def transcription_function(
     prompt_audio, target_audio,
     prompt_metadata, target_metadata,
@@ -276,7 +276,7 @@ def transcription_function(
             torch.cuda.empty_cache()
 
 
-@spaces.GPU
+@spaces.GPU(duration=180)
 def synthesis_function(
     prompt_audio,
     target_audio,

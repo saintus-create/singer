@@ -300,7 +300,7 @@ def _run_svc_preprocess(
 			torch.cuda.empty_cache()
 
 
-@spaces.GPU
+@spaces.GPU(duration=180)
 def _run_svc_convert(
     preprocess_state,
     auto_shift=True,
@@ -344,7 +344,7 @@ def _run_svc_convert(
 			torch.cuda.empty_cache()
 
 
-@spaces.GPU
+@spaces.GPU(duration=180)
 def _start_svc(
     prompt_audio,
     target_audio,

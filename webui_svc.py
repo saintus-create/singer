@@ -12,7 +12,6 @@ import numpy as np
 import soundfile as sf
 import torch
 
-import spaces
 from preprocess.pipeline import PreprocessPipeline
 from soulxsinger.utils.file_utils import load_config
 from cli.inference_svc import build_model as build_svc_model, process as svc_process
@@ -245,7 +244,6 @@ class AppState:
 APP_STATE = AppState()
 
 
-@spaces.GPU(duration=180)
 def _run_svc_preprocess(
     prompt_audio,
     target_audio,
@@ -300,7 +298,6 @@ def _run_svc_preprocess(
 			torch.cuda.empty_cache()
 
 
-@spaces.GPU(duration=180)
 def _run_svc_convert(
     preprocess_state,
     auto_shift=True,
@@ -344,7 +341,6 @@ def _run_svc_convert(
 			torch.cuda.empty_cache()
 
 
-@spaces.GPU(duration=180)
 def _start_svc(
     prompt_audio,
     target_audio,

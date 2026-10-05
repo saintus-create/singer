@@ -162,7 +162,7 @@ python app.py
 
 The app listens on `0.0.0.0:7860`. On a remote GPU server, expose port 7860 and open the resulting public URL.
 
-A CUDA GPU is strongly recommended. A RunPod GPU Pod is a suitable remote host for this repository, but the same application can run on another NVIDIA GPU server or locally. RunPod provides dedicated GPU Pods for running AI/ML applications. citeturn0search0
+A CUDA GPU is strongly recommended. A RunPod GPU Pod is a suitable remote host for this repository, but the same application can run on another NVIDIA GPU server or locally. RunPod provides dedicated GPU Pods for running AI/ML applications.
 
 ## 🚧 Roadmap
 

@@ -5,7 +5,7 @@ sdk: gradio
 sdk_version: "6.3.0"
 app_file: app.py
 python_version: "3.10"
-suggested_hardware: zero-a10g
+suggested_hardware: t4-small
 ---
 
 <div align="center">
@@ -148,24 +148,21 @@ You can launch the interactive interface with:
 python webui.py
 ```
 
-### 🚀 Deploy as Hugging Face Space
+### 🚀 Standalone SVC deployment
 
-This repo is ready to deploy as a [Hugging Face Space](https://huggingface.co/spaces). **Pretrained models are not included;** `app.py` downloads them from the Hub on first run.
+The SVC interface can run independently of Hugging Face Spaces and does not use ZeroGPU.
 
-**📖 详细部署指南请查看：[DEPLOY.md](DEPLOY.md)**
+Install dependencies, download the pretrained models, then start the SVC app:
 
-**快速步骤：**
+```bash
+pip install -r requirements.txt
+python ensure_models.py
+python app.py
+```
 
-1. **创建 Space**：访问 [huggingface.co/spaces](https://huggingface.co/spaces)，点击 "Create new Space"，选择 **Gradio** SDK
-2. **上传代码**：使用 Git 推送或 Web 界面上传代码文件
-3. **配置硬件**：在 Space Settings 中选择 **GPU T4 Small**（推荐）以加快推理速度
-4. **等待启动**：Space 会自动安装依赖、下载模型并启动应用（首次运行可能需要 5-15 分钟）
+The app listens on `0.0.0.0:7860`. On a remote GPU server, expose port 7860 and open the resulting public URL.
 
-模型会自动从以下仓库下载：
-- [Soul-AILab/SoulX-Singer](https://huggingface.co/Soul-AILab/SoulX-Singer) (SVS model)
-- [Soul-AILab/SoulX-Singer-Preprocess](https://huggingface.co/Soul-AILab/SoulX-Singer-Preprocess) (preprocessing models)
-
-
+A CUDA GPU is strongly recommended. A RunPod GPU Pod is a suitable remote host for this repository, but the same application can run on another NVIDIA GPU server or locally. RunPod provides dedicated GPU Pods for running AI/ML applications. citeturn0search0
 
 ## 🚧 Roadmap
 

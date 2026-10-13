@@ -21,6 +21,7 @@ ROOT = Path(__file__).parent
 SAMPLE_RATE = 44100
 PROMPT_MAX_SEC_DEFAULT = 30
 TARGET_MAX_SEC_DEFAULT = 600
+CPU_MODE = not torch.cuda.is_available()
 
 # Example rows: only [prompt_audio, target_audio]; other params use UI defaults when running
 EXAMPLE_LIST = [
@@ -345,7 +346,7 @@ def _start_svc(
     prompt_audio,
     target_audio,
     prompt_vocal_sep=False,
-    target_vocal_sep=True,
+    target_vocal_sep=False,
     auto_shift=True,
     auto_mix_acc=True,
     pitch_shift=0,
@@ -384,7 +385,11 @@ def render_tab_content() -> None:
             with gr.Accordion("Advanced settings", open=False):
                 with gr.Row():
                     prompt_vocal_sep = gr.Checkbox(label="Prompt vocal separation", value=False, scale=1)
-                    target_vocal_sep = gr.Checkbox(label="Target vocal separation", value=True, scale=1)
+                    target_vocal_sep = gr.Checkbox(
+                        label="Target vocal separation (very slow on CPU)",
+                        value=False if CPU_MODE else True,
+                        scale=1,
+                    )
                 with gr.Row():
                     auto_shift = gr.Checkbox(label="Auto pitch shift", value=True, scale=1)
                     auto_mix_acc = gr.Checkbox(label="Auto mix accompaniment", value=True, scale=1)
